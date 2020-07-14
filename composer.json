@@ -1,0 +1,29 @@
+{
+  "name": "soluzione-software/laravel-banners",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yuriy Martini",
+      "email": "y.martini@soluzionesoftware.com",
+      "homepage": "https://github.com/yuriy-martini",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "illuminate/database": "^6.0",
+    "illuminate/support": "^6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SoluzioneSoftware\\Banners\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SoluzioneSoftware\\Banners\\ServiceProvider"
+      ]
+    }
+  }
+}
