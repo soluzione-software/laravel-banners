@@ -8,7 +8,7 @@ use SoluzioneSoftware\Banners\Contracts\BannersGroup as BannersCollectionContrac
 use SoluzioneSoftware\Banners\Traits\HasContractsBindings;
 
 /**
- * @property Collection banners
+ * @property-read Collection banners
  */
 class BannersGroup extends Model implements BannersCollectionContract
 {
