@@ -13,6 +13,11 @@ use SoluzioneSoftware\Banners\Models\BannersGroup;
 class ServiceProvider extends BaseServiceProvider
 {
     /**
+     * @var bool
+     */
+    private static $withoutMigrations = false;
+
+    /**
      * Register any application services.
      *
      * @return void
@@ -31,16 +36,23 @@ class ServiceProvider extends BaseServiceProvider
         $this->bootMigrations();
     }
 
+    public static function withoutMigrations(bool $withoutMigrations = true)
+    {
+        self::$withoutMigrations = $withoutMigrations;
+    }
+
     private function bootMigrations()
     {
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => App::databasePath('migrations')
+            __DIR__.'/../database/migrations/' => App::databasePath('migrations')
         ], ['migrations', 'banners', 'banners-migrations']);
 
-        $this->loadMigrationsFrom([
-            __DIR__ . '/../database/migrations/2020_01_01_000000_create_banners_groups_table.php',
-            __DIR__ . '/../database/migrations/2020_01_01_000000_create_banners_table.php',
-        ]);
+        if (!static::$withoutMigrations) {
+            $this->loadMigrationsFrom([
+                __DIR__.'/../database/migrations/2020_01_01_000000_create_banners_groups_table.php',
+                __DIR__.'/../database/migrations/2020_01_01_000000_create_banners_table.php',
+            ]);
+        }
     }
 
     protected function registerBindings()
